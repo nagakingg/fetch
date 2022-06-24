@@ -22,9 +22,9 @@ data = fetch.trades('curve', pools=tricrypto2)
 
 #Pull tricrypto2 trades between April 1 and May 1, 2022
 from datetime import datetime
-
 t_start = datetime(2022,4,1).timestamp()
 t_end =datetime(2022,5,1).timestamp()
+
 data = fetch.trades('curve', pools=tricrypto2, t_start=t_start, t_end=t_end)
 
 #Pull all trades for tricrypto2, return 6H candles for each coin pair
