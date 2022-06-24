@@ -150,15 +150,16 @@ class Trades(Schemas):
         if t_start is None:
             t_prev = 0
         else:
-            t_prev = t_start-1
+            t_prev = int(t_start-1)
             
         if t_end is None:
             try:
                 req = requests.post(url, json={"query": query % (1, 'desc', 0)}) #most recent trade
                 t_end = getdictpath(req.json(), ['data', objpath, 0, 'timestamp']) #timestamp of most recent trade
-                t_end = int(t_end)
             except:
                 raise Exception('Data path missing from initial response. Check query parameters.')
+                
+        t_end = int(t_end)
         
         data = []
         while t_prev < t_end:
@@ -418,15 +419,3 @@ class Query:
         **dict.fromkeys(Subgraph.Uni.aliases, PoolCoinsUni),
         **dict.fromkeys(Subgraph.Sushi.aliases, PoolCoinsSushi),
     }
-    
-
-    
-
-    
-
-    
-    
-    
-    
-
-    
